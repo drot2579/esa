@@ -1,0 +1,87 @@
+<!--#region HEAD -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>ESA Hesap</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<!--endregion -->
+
+<body>
+
+    <nav>
+        <h4 title="Erythropoiesis-Stimulating Agent">ESA Doz Hesaplama</h3>
+            <section class="btns">
+                <button class="info">Bilgi</button>
+            </section>
+        
+                
+    </nav>
+
+    <main>
+
+
+        <div class="isStartDose inpLab ">
+            <label for="isStartDose">Dozaj</label>
+
+            <div class="row">
+                <span>İdame dozu</span>
+                <input type="range" name="isStartDose" id="isStartDose" min="0" max="1" value="1">
+                <span class="selected">Başlangıç dozu</span>
+            </div>
+
+        </div>
+
+        <div class="kg inpLab" title="kg">
+            <label for="kg">Kütle</label>
+            <input type="number" name="kg" id="kg" min="1" max="120" step="0.5" value="40">
+            <input type="range" name="kgRange" id="kgRange" min="1" max="120" step="0.5" value="40">
+        </div>
+
+        <div class="horizontalLine"></div>
+
+        <div class="eritDose inpLab" title="IU/hafta">
+            <label for="eritDose">Eritropoetin</label>
+            <input type="number" name="eritDose" id="eritDose" min="0" max="18000" step="75" value="7500"
+                >
+            <input type="range" name="eritDoseRange" id="eritDoseRange" min="0" max="18000" step="75" value="7500">
+        </div>
+
+
+
+        <div class="darbeDose inpLab" title="mcg/hafta">
+            <label for="darbeDose">Darbepoetin</label>
+            <input type="number" name="darbeDose" id="darbeDose" min="0" max="90" step="0.35" value="37.5"
+                >
+            <input type="range" name="darbeDoseRange" id="darbeDoseRange" min="0" max="90" step="0.35" value="37.5">
+        </div>
+
+
+<article class="pop">
+    <section class="info hidden">
+        <h5>Bilgi</h5>
+        <p>"W" ve "S" tuşları ile değiştireceğiniz değeri seçebilirsiniz.</p>
+        <p>(tab ve shift + tab da kullanılabilir)</p>
+        <p>Ok tuşları ile değerleri değiştirebilirsiniz.</p>
+        <p>
+            İmleci kutucuk üzerinde bekleterek değere ait birimi görebilirsiniz.
+        </p>
+    </section>
+</article>
+
+
+
+
+
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>
