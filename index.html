@@ -1,87 +1,177 @@
 <!--#region HEAD -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>ESA Hesap</title>
+    <title>ESA3</title>
+    <link rel="stylesheet" href="myDefault.css">
+    <link rel="stylesheet" href="switch.css">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <!--endregion -->
-
 <body>
-
     <nav>
-        <h4 title="Erythropoiesis-Stimulating Agent">ESA Doz Hesaplama</h3>
-            <section class="btns">
-                <button class="info">Bilgi</button>
-            </section>
-        
-                
+        <div class="rxxInputWrap row">
+
+            <span>Reçete</span>
+            <label class="switch">
+                <input class="rxxInput" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+
+        </div>
     </nav>
-
     <main>
-
-
-        <div class="isStartDose inpLab ">
-            <label for="isStartDose">Dozaj</label>
-
-            <div class="row">
-                <span>İdame dozu</span>
-                <input type="range" name="isStartDose" id="isStartDose" min="0" max="1" value="1">
-                <span class="selected">Başlangıç dozu</span>
-            </div>
-
-        </div>
-
-        <div class="kg inpLab" title="kg">
-            <label for="kg">Kütle</label>
-            <input type="number" name="kg" id="kg" min="1" max="120" step="0.5" value="40">
-            <input type="range" name="kgRange" id="kgRange" min="1" max="120" step="0.5" value="40">
-        </div>
-
-        <div class="horizontalLine"></div>
-
-        <div class="eritDose inpLab" title="IU/hafta">
-            <label for="eritDose">Eritropoetin</label>
-            <input type="number" name="eritDose" id="eritDose" min="0" max="18000" step="75" value="7500"
-                >
-            <input type="range" name="eritDoseRange" id="eritDoseRange" min="0" max="18000" step="75" value="7500">
-        </div>
-
-
-
-        <div class="darbeDose inpLab" title="mcg/hafta">
-            <label for="darbeDose">Darbepoetin</label>
-            <input type="number" name="darbeDose" id="darbeDose" min="0" max="90" step="0.35" value="37.5"
-                >
-            <input type="range" name="darbeDoseRange" id="darbeDoseRange" min="0" max="90" step="0.35" value="37.5">
-        </div>
-
-
-<article class="pop">
-    <section class="info hidden">
-        <h5>Bilgi</h5>
-        <p>"W" ve "S" tuşları ile değiştireceğiniz değeri seçebilirsiniz.</p>
-        <p>(tab ve shift + tab da kullanılabilir)</p>
-        <p>Ok tuşları ile değerleri değiştirebilirsiniz.</p>
-        <p>
-            İmleci kutucuk üzerinde bekleterek değere ait birimi görebilirsiniz.
-        </p>
-    </section>
-</article>
-
-
-
-
-
+        <article class="boxes">
+            <section class="boxGroup1">
+                <div class="hgb box">
+                    <div class="titleWrap">
+                        <p class="boxLabel">hgb</p>
+                    </div>
+                    <div class="numberWrap labelInput ">
+                        <label for="hgbInpNum">hgbInpNum</label>
+                        <input class="hgb" type="number" name="hgbInpNum" id="hgbInpNum">
+                    </div>
+                    <div class="rangeWrap labelInput ">
+                        <label for="hgbInpRan">hgbInpRan</label>
+                        <input class="hgb" type="range" name="hgbInpRan" id="hgbInpRan">
+                    </div>
+                </div>
+                <div class="kg box">
+                    <div class="titleWrap">
+                        <p class="boxLabel">kg</p>
+                    </div>
+                    <div class="numberWrap labelInput ">
+                        <label for="kgInpNum">kgInpNum</label>
+                        <input class="kg" type="number" name="kgInpNum" id="kgInpNum">
+                    </div>
+                    <div class="rangeWrap labelInput ">
+                        <label for="kgInpRan">kgInpRan</label>
+                        <input class="kg" type="range" name="kgInpRan" id="kgInpRan">
+                    </div>
+                </div>
+                <div class="ert box">
+                    <div class="titleWrap">
+                        <p class="boxLabel">eritropoetin</p>
+                    </div>
+                    <div class="numberWrap labelInput ">
+                        <label for="ertInpNum">ertInpNum</label>
+                        <input class="ert" type="number" name="ertInpNum" id="ertInpNum">
+                    </div>
+                    <div class="rangeWrap labelInput ">
+                        <label for="ertInpRan">ertInpRan</label>
+                        <input class="ert" type="range" name="ertInpRan" id="ertInpRan">
+                    </div>
+                </div>
+                <div class="drb box">
+                    <div class="titleWrap">
+                        <p class="boxLabel">darbepoetin</p>
+                    </div>
+                    <div class="numberWrap labelInput ">
+                        <label for="drbInpNum">drbInpNum</label>
+                        <input class="drb" type="number" name="drbInpNum" id="drbInpNum">
+                    </div>
+                    <div class="rangeWrap labelInput ">
+                        <label for="drbInpRan">drbInpRan</label>
+                        <input class="drb" type="range" name="drbInpRan" id="drbInpRan">
+                    </div>
+                </div>
+                <div class="ertPk box">
+                    <div class="titleWrap">
+                        <p class="boxLabel">eritropoetin/kg</p>
+                    </div>
+                    <div class="numberWrap labelInput ">
+                        <label for="ertPkInpNum">ertPkInpNum</label>
+                        <input class="ertPk" type="number" name="ertPkInpNum" id="ertPkInpNum" disabled>
+                    </div>
+                    <div class="rangeWrap labelInput ">
+                        <label for="ertPkInpRan">ertPkInpRan</label>
+                        <input class="ertPk" type="range" name="ertPkInpRan" id="ertPkInpRan" disabled>
+                    </div>
+                </div>
+                <div class="drbPk box">
+                    <div class="titleWrap">
+                        <p class="boxLabel">darbepoetin/kg</p>
+                    </div>
+                    <div class="numberWrap labelInput ">
+                        <label for="drbPkInpNum">drbPkInpNum</label>
+                        <input class="drbPk" type="number" name="drbPkInpNum" id="drbPkInpNum" disabled>
+                    </div>
+                    <div class="rangeWrap labelInput ">
+                        <label for="drbPkInpRan">drbPkInpRan</label>
+                        <input class="drbPk" type="range" name="drbPkInpRan" id="drbPkInpRan" disabled>
+                    </div>
+                </div>
+            </section>
+            <section class="boxGroup2 rxx">
+                <div class="fer box">
+                    <div class="titleWrap">
+                        <p class="boxLabel">ferritin</p>
+                    </div>
+                    <div class="numberWrap labelInput ">
+                        <label for="ferInpNum">ferInpNum</label>
+                        <input class="fer" type="number" name="ferInpNum" id="ferInpNum">
+                    </div>
+                    <div class="rangeWrap labelInput ">
+                        <label for="ferInpRan">ferInpRan</label>
+                        <input class="fer" type="range" name="ferInpRan" id="ferInpRan">
+                    </div>
+                </div>
+                <div class="dates row">
+                    <div class="ferDate box dateBox">
+                        <div class="titleWrap">
+                            <p class="boxLabel">ferritin tarih</p>
+                        </div>
+                        <div class="dateWrap labelInput ">
+                            <label for="ferDateInpDate">ferDateInpDate</label>
+                            <input class="ferDate" type="Date" name="ferDateInpDate" id="ferDateInpDate">
+                        </div>
+                    </div>
+                    <div class="hgbDate box dateBox">
+                        <div class="titleWrap">
+                            <p class="boxLabel">hgb tarih</p>
+                        </div>
+                        <div class="dateWrap labelInput ">
+                            <label for="hgbDateInpDate">hgbDateInpDate</label>
+                            <input class="hgbDate" type="Date" name="hgbDateInpDate" id="hgbDateInpDate">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+        <article class="write rxx">
+            <p class="ert bordered">
+                    Ferritin:
+                    <span class="fer paramtext"></span>
+                    &lpar;<span class="ferDate paramtext"></span>&rpar;.
+                    Hgb:
+                    <span class="hgb paramtext"></span>
+                    &lpar;<span class="hgbDate paramtext"></span>&rpar;.
+                    Hastanın kuru kilosu
+                    <span class="kg paramtext"></span>
+                    kg olup
+                    <span class="ertPk paramtext"></span>
+                    mcg/kg/hafta dozundan tedavisi uygundur.
+                </p>
+            <p class="drb bordered">
+                    Ferritin:
+                    <span class="fer paramtext"></span>
+                    &lpar;<span class="ferDate paramtext"></span>&rpar;.
+                    Hgb:
+                    <span class="hgb paramtext"></span>
+                    &lpar;<span class="hgbDate paramtext"></span>&rpar;.
+                    Hastanın kuru kilosu
+                    <span class="kg paramtext"></span>
+                    kg olup
+                    <span class="drbPk paramtext"></span>
+                    IU/kg/hafta dozundan tedavisi uygundur.
+                </p>
+        </article>
     </main>
-
     <footer></footer>
 
 </body>
-
 </html>

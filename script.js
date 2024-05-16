@@ -1,109 +1,86 @@
-class Parameter {
-    static instances = {}
-    constructor(name, value = null, decimals = 0,controlFn = null) {
-        this.name = name
-        this.mainValue = value
-        this.decimals = decimals
-
-        this.container = document.querySelector(`.${name}`)
-        this.elements = document.querySelectorAll(`.${name} input`)
-        
-        this.updateElements()
-
-        this.controlFn = controlFn
-
-        Parameter.instances[name] = this
+console.time("a")
+const toggleHidden = (els) => { for (const el of els) {el.classList.toggle("hidden")}
+ }
+const playBlur = (els) => {
+    els.forEach((el) => {
+        el.animate([
+            { filter: " brightness(1.3) drop-shadow(0 0 6px #fff)", textShadow: "0 0 2px #fff" },
+            { filter: " brightness(1)" },
+        ],
+            { duration: 250, })
     }
-    updateVal() { this.mainValue = +this.elements[0].value }
-    updateElements() { this.elements.forEach((el) => { el.value = +this.mainValue }) }
-    updateAll(value) {
-        this.mainValue = +value.toFixed(this.decimals);
-        this.updateElements()
+    )
+}
+const limitDecimals = (num, dcm = 1) => (Number.isInteger(+num) ? +num : +num.toFixed(dcm))
 
-        this.controlFn && this.controlFn(+value)
+/* ---------- ---------- ---------- -------- ---------- ---------- ---------- */
+const paramInstances = []
+const inpKeys = ["number", "range", "date",]
+class Param {
+    postFns = [];
+    callPostFns() { this.postFns.forEach((fn) => fn()) }
+    constructor(name, value = 0, attributes = {}) {
+        this.name = name;
+
+        this.inputs = Array.from(document.querySelectorAll(`input.${name}`))
+        this.outputs = Array.from(document.querySelectorAll(`input:not([type=date]).${name}, .paramtext.${name}`))
+
+        for (const input of this.inputs) {
+            input.addEventListener("input",(e) => this.setValue(e.target.value))
+            for (const attr in attributes) { input.setAttribute(attr, attributes[attr]) }
+        }
+        this.setValue(value)
+        paramInstances.push(this)
+    }
+    setValue(x) {
+        if (this.value == x) { return }
+        if (this.name.toLowerCase().includes("date")) { x = x.split("-").reverse().join(".") }
+        this.value = x = Number.isNaN(x - 0) ? x : (x - 0);
+        if (typeof x == "number") { x = limitDecimals(x) }
+        for (const el of this.outputs) {  el.value = el.innerText = x; playBlur([el]) }
+        this.callPostFns()
     }
 
 }
 
-const perKg = {
-    high: { erit: 150, darbe: 0.75 },
-    low: { erit: 75, darbe: 0.35 },
-    none: { erit: 0, darbe: 0 },
-    current: { erit: 150, darbe: 0.75 },
-}
 
-const isStartDose = new Parameter("isStartDose", 1, 0,(value) => {
-    value - 0;
-    let inputEl = isStartDose.elements[0]
-    if (true) {
-        [inputEl.nextElementSibling,inputEl.previousElementSibling].forEach((el) => {
-            el.classList.toggle("selected")
-        })
-    } 
-})
-const kg = new Parameter("kg", 40, 1,(value) => {
-    value > 120 ? kg.container.classList.add("fat") : kg.container.classList.remove("fat")
-})
-const eritPk = new Parameter("eritPk", 150, 0)
-const darbePk = new Parameter("darbePk", 0.75, 2)
-const eritDose = new Parameter("eritDose", 6000, 0)
-const darbeDose = new Parameter("darbeDose", 30, 2)
+let hgb = new Param("hgb", 10, { min: 5, max: 12, step: 0.1 })
+let kg = new Param("kg", 50, { min: 0, max: 150, step: 0.5 })
+let ert = new Param("ert", 7500, { min: 0, max: 150 * 150, step: 75 })
+let ertPk = new Param("ertPk", 150, { min: 0, max: 150, step: 75 })
+let drb = new Param("drb", 37.5, { min: 0, max: 0.75 * 150, step: 0.35 })
+let drbPk = new Param("drbPk", 0.75, { min: 0, max: 0.75, step: 0.05 })
+let fer = new Param("fer", 300, { min: 0, max: 1500, step: 1 })
 
-function updatePksFromDosage() {
-    perKg.current = isStartDose.mainValue ? perKg.high : perKg.low
-    eritPk.updateAll(perKg.current.erit)
-    darbePk.updateAll(perKg.current.darbe)
-}
+let day = 1000 * 60 * 60 * 24
+let date = new Date()
+let currentDate = date.toISOString().slice(0, 10)
+let sixMonthsAgo = new Date(date - 180 * day).toISOString().slice(0, 10)
 
-function updateDoses() {
-    eritDose.updateAll(kg.mainValue * eritPk.mainValue)
-    darbeDose.updateAll(kg.mainValue * darbePk.mainValue)
-}
-function isStartDoseListener(e) {
-    isStartDose.updateAll(+e.target.value)
-    updatePksFromDosage()
-    updateDoses()
-    
-}
-isStartDose.elements.forEach((el) => { el.addEventListener("input", isStartDoseListener) })
+let hgbDate = new Param("hgbDate", currentDate, { min: sixMonthsAgo, max: currentDate })
+let ferDate = new Param("ferDate", currentDate, { min: sixMonthsAgo, max: currentDate })
+delete hgbDate.outputs.date
+delete ferDate.outputs.date
 
-function kgFunc(e) {
-    kg.updateAll(+e.target.value)
+const updateDoses = () => {
+    ert.setValue(ertPk.value * kg.value)
+    drb.setValue(drbPk.value * kg.value)
+}
+const hgbToPk = () => {
+    ertPk.setValue(hgb.value < 11 ? 150 : 75)
+    drbPk.setValue(hgb.value < 11 ? 0.75 : 0.35)
     updateDoses()
 }
-kg.elements.forEach((elem) => { elem.addEventListener("input", kgFunc) })
+hgb.postFns.push(hgbToPk)
+kg.postFns.push(updateDoses)
+ert.postFns.push(() => kg.setValue(ert.value / ertPk.value))
+drb.postFns.push(() => kg.setValue(drb.value / drbPk.value))
+console.timeEnd("a")
 
 
-function eritDoseFunc(e) {
-    eritDose.updateAll(+e.target.value)
-    kg.updateAll(eritDose.mainValue / eritPk.mainValue)
-    darbeDose.updateAll(kg.mainValue * darbePk.mainValue)
-}
-eritDose.elements.forEach((elem) => { elem.addEventListener("input", eritDoseFunc) })
+const chc = document.querySelector("input[type=checkbox]")
+toggleHidden(document.querySelectorAll(".rxx"))
 
-function darbeDoseFunc(e) {
-    darbeDose.updateAll(+e.target.value)
-    kg.updateAll(darbeDose.mainValue / darbePk.mainValue)
-    eritDose.updateAll(kg.mainValue * eritPk.mainValue)
-}
-darbeDose.elements.forEach((elem) => { elem.addEventListener("input", darbeDoseFunc) })
-
-
-/* ---------- ----------> UI <---------- ---------- */
-
-let rangesArr = document.querySelectorAll("input[type=range]:not(:disabled)")
-let focusNum = 4**10 - 1
-document.body.addEventListener("keypress", (e) => {
-    if(!["w","s","f"].includes(e.key)){return}
-    let focused = document.querySelector("input[type=range]:not(:disabled):focus")
-    if(e.key == "w"){focusNum--}  
-    if(e.key == "s"){focusNum++}
-    if(e.key == "f"){focusNum = 4**10}
-
-    rangesArr[ focusNum % rangesArr.length].focus()
+chc.addEventListener("change", (e) => {
+    toggleHidden(document.querySelectorAll(".rxx"))
 })
-
-document.querySelector("button.info").addEventListener("click", (e) => {
-    document.querySelector(".pop > .info").classList.toggle("hidden")
-})
-

@@ -1,0 +1,165 @@
+
+const limitDecimals2 = (num, dcm = 1) => +([(num + "").split(".")[0], (num + "")?.split(".")[1]?.slice(0, dcm)].join("."))
+const limitDecimals3 = (num, dcm = 1) => +(num + "").split(".").reduce((a, c) => a + "." + c.slice(0, dcm))
+
+
+// const playBright = (el) => {
+//     el?.animate([{ filter: "brightness(0.5)" }, { filter: "brightness(1.0)" }], { duration: 300 })
+// }
+
+
+ &.ertPk, &.drbPk {
+        &, :disabled {
+            background-color: #111;
+            
+        }
+        position: fixed;
+        & .boxRow1 {
+            justify-content: center;
+        }
+        & .boxRow2 {
+            & input {
+                /* range */
+                width: 140px;
+                min-width: 120px;
+                max-width: 160px;
+            }
+        }
+    }
+
+
+
+        if (/.+-.+-.+/.test(x)) 
+
+        
+        
+        
+
+let hgb = new Param("hgb", 10, undefined, { min: 5, max: 12, step: 0.1, value: 10 })
+let hgbDate = new Param("hgbDate", date,undefined,{min: "2024-05-01"})
+let kg = new Param("kg", 50, { decimals: 2 },{ min: 20, max: 150, step: 0.5, value: 50 })
+let ert = new Param("ert", 7500,{ min: 75 * 20, max: 150 * 150, step: 75, value: 150 * 50 })
+let ertPk = new Param("ertPk", 150,{ min: 75, max: 150, step: 75, value: 150 })
+let drb = new Param("drb", 37.5, { decimals: 4 },{ min: 0.35, max: 0.75, step: 0.35, value: 150 * 0.75 })
+let drbPk = new Param("drbPk", 0.75, undefined, { min: 0.35, max: 0.75, step: 0.40, value: 0.75 })
+let fer = new Param("fer", 0,undefined,{ min: 1, max: 1500, step: 1, value: 0 })
+let ferDate = new Param("ferDate", date)
+
+        this.inputs = {
+            number: document.querySelector(`input[type=number].${name}`),
+            range: document.querySelector(`input[type=range].${name}`),
+            date: document.querySelector(`input[type=date].${name}`),
+        };
+
+
+
+
+
+https://elementor.com/blog/font-pairing/
+1. Abril Fatface & Lato
+2. Alegreya Sans Black & Alegreya
+3. Aqua Grotesque & Roboto Slab Thin
+4. Archivo Black & Roboto
+5. Bebas Neue & Old Standard TT
+6. Cooper Hewitt Heavy & Cooper Hewitt Thin
+7. Exo 2 & Alegreya Sans
+8. Fira Sans Black & PT Serif
+9. Josefin Sans Bold & Josefin Slab Semi-Bold
+10. Karla Bold & Spectral Light
+11. Lato & Merriweather
+12. Lato & Roboto
+13. League Gothic & PT Serif
+14. League Spartan & Libre Baskerville
+15. Libre Baskerville & Source Sans Pro
+16. Libre Franklin & Libre Baskerville
+17. Lobster & Roboto Condensed
+18. Lora & Merriweather
+19. Merriweather Sans Bold & Merriweather
+20. Montserrat & Droid Serif
+21. Neue Helvetica & EB Garamond Medium
+22. Nexa Bold & Crimson Pro
+23. Noir Pro & Playfair Display
+24. Open Sans & Source Sans
+25. Oswald & Montserrat Extra Light
+26. Oswald & Old Standard TT
+27. Playfair Display & Raleway Thin
+28. PT Sans & PT Serif
+29. Raleway & Merriweather
+30. Source Sans Pro & Times New Roman
+
+
+
+SWITCH BIG
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    /* width: 30px; */
+    width: 20rem;
+    /* height: 17px; */
+    height: 8rem;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    /* height: 13px; */
+    height: 6.5rem;
+    /* width: 13px; */
+    width: 6.5rem;
+    /* left: 2px; */
+    left: 1.2rem;
+    /* bottom: 2px; */
+    bottom: 0.8rem;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+      /* box-shadow: 0 0 1px #2196F3; */
+      box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+      /* -webkit-transform: translateX(13px); */
+      -webkit-transform: translateX(11rem);
+    /* -ms-transform: translateX(13px); */
+    -ms-transform: translateX(11rem);
+    /* transform: translateX(13px); */
+    transform: translateX(11rem);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+      /* border-radius: 17px; */
+      border-radius: 4rem;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

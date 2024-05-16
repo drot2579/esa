@@ -1,0 +1,101 @@
+/*#region ----------------- RESET ------------------  */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+ol,
+ul {
+    list-style: none;
+}
+a,
+a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+button,
+input,
+select,
+textarea,
+label {
+    font-family: inherit;
+    font-size: 1rem;
+}
+/*#endregion ----------------- RESET ------------------  */
+/* -------------------------------------------------------------------------- */
+/*#region ---------------------* MY DEFAULT *--------------------------- */
+*,
+*::before,
+*::after {
+    text-align: center;
+    vertical-align: middle;
+}
+button,a {
+    transition: 250ms;
+    cursor: pointer;
+    &:hover {
+        filter: brightness(0.95);
+    }
+    &:active {
+        filter: brightness(0.9);
+    }
+}
+table {
+    --hh: 90;
+    --ss: 66%;
+    --ll: 6%;
+    --tbClr1: hsl(var(--hh), var(--ss), calc(100% - var(--ll) * 1));
+    --tbClr2: hsl(var(--hh), var(--ss), calc(100% - var(--ll) * 2));
+    --tbClr3: hsl(var(--hh), var(--ss), calc(100% - var(--ll) * 3));
+    --tbClr4: hsl(var(--hh), var(--ss), calc(100% - var(--ll) * 5));
+    background-color: #444;
+    & td,
+    & th {
+        padding: 0.5rem;
+    }
+    tr:nth-child(odd) {
+        background-color: var(--tbClr1);
+    }
+    tr:nth-child(even) {
+        background-color: var(--tbClr2);
+    }
+    & thead th {
+        background-color: var(--tbClr4);
+    }
+    & tfoot td {
+        background-color: var(--tbClr3);
+    }
+    & tbody tr:hover {
+        filter: brightness(0.8);
+    }
+}
+h6 {
+    font-size: 1.25rem;
+}
+h5 {
+    font-size: 1.50rem;
+}
+h4 {
+    font-size: 1.75rem;
+}
+h3 {
+    font-size: 2.00rem;
+}
+h2 {
+    font-size: 2.25rem;
+}
+h1 {
+    font-size: 2.50rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+}
+/*#endregion ---------- ----------* MY DEFAULT *---------- ---------- ----- */

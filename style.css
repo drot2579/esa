@@ -1,256 +1,211 @@
-/*#region ----------------- RESET ------------------  */
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border: none;
-}
-ol,
-ul {
-    list-style: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-h6 {
-    font-size: 1.25rem;
-}
-h5 {
-    font-size: 1.50rem;
-}
-h4 {
-    font-size: 1.75rem;
-}
-h3 {
-    font-size: 2.00rem;
-}
-h2 {
-    font-size: 2.25rem;
-}
-h1 {
-    font-size: 2.50rem;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 400;
-    padding: 0.3rem 0.6rem;
-}
-
-button,
-input,
-select,
-textarea,
-p,
-span,
-a,
-li,
-label,
-span,
-img {
-    font-family: inherit;
-    font-size: 1rem;
-    text-align: center;
-}
-button {
-    transition: 200ms;
-    cursor: pointer;
-    &:hover {
-        filter: brightness(0.95);
-    }
-    &:active {
-        filter: brightness(0.9);
-    }
-}
-input[type=range] {
-    padding: 0;
-}
-input[type=number] {
-    &::-webkit-inner-spin-button {
-        display: none;
-    }
-    &::-webkit-outer-spin-button {
-        display: none;
-    }
-}
-/*#endregion ----------------- RESET ------------------  */
+/*#region ---------- ----------* MY CONFIG *---------- ---------- ----- */
 html {
-    font-size: 14px;
-    background-color: #eee;
-    text-align: center;
-    vertical-align: middle;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --texColor: #111;
+    --bgColor: hsl(0, 0%, 92%);
+    --hgbColor: hsl(345, 100%, 50%);
+    --kgColor: hsl(210, 100%, 50%);
+    --ertColor: hsl(265, 100%, 50%);
+    --drbColor: hsl(280, 100%, 50%);
+    --ferColor: hsl(315, 100%, 35%);
+
+    background-color: var(--bgColor);
 }
 body {
     min-height: 100dvh;
-    margin: 0 auto;
-}
-body * {
-    /* *For Development */
-    /* border: 1px dotted red; */
+    margin: auto;
 }
 nav,
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-nav {
-    background-color: #ccc;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    height: 8dvh;
-    column-gap: 2vw;
-    position: relative;
-    & > .btns {
-        position: absolute;
-        right: 2%;
-        & > button {
-            width: 8rem;
-            height: 2rem;
-            display: inline-block;
-        }
-    }
-}
+footer,
 main,
-main * {
+article,
+section,
+div {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    margin: 0 auto;
+    width: 100%;
 }
-input[type=range] {
-    justify-content: unset;
-    align-items: unset;
+div {
+    width: unset;
+}
+span {
+    display: inline-block;
+}
+input {
+    background-color: hsl(0, 0%, 98%);
+}
+/* *For Development */
+/*#endregion ---------------------* MY CONFIG *--------------------------- */
+/*#region ---------------------* MAIN *--------------------------- */
+main {
+    max-width: 1000px;
+    position: relative;
+    justify-content: flex-start;
+    margin: auto;
+    /* padding: 0 0.25rem; */
+}
+.boxGroup1, .boxGroup2 {
+    padding: 1rem 0rem;
+    max-width: 720px;
+    row-gap: 0.25rem;
+}
+.boxLabel {
+    text-transform: capitalize !important;
+}
+.box {
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: center;
+    & .titleWrap {
+        width: 6.25rem;
+        align-items: start;
+        & p {
+            text-align: left;
+            width: 100%;
+        }
+    }
+    & .numberWrap {
+        width: 6rem;
+        align-items: start;
+        & input {
+            height: 1.6rem;
+            width: 100%;
+        }
+    }
+    & .dateWrap {
+        align-items: start;
+        & input {
+            height: 2rem;
+        }
+    }
+    & .rangeWrap {
+        width: 80%;
+        max-width: 400px;
+        & input {
+            width: 90%;
+        }
+    }
+}
+.dates {
+    justify-content: start;
+    width: 100%;
+    flex-flow: row wrap;
+    row-gap: 0.25rem;
+}
+.write {
+    width: min(98%,800px);
+    & section {
+        /* display: flex;
+        flex-flow: row;
+        justify-content: start; */
+        display: block;
+        border: 6px solid currentColor;
+    }
+    & p {
+        /* all: unset !important; */
+        padding:2px;
+        text-align: left;   
+        color: var(--texColor);
+        margin: 0.5rem 0;
+        &.ert {
+            border: 6px solid var(--ertColor);
+        }
+        &.drb {
+            border: 6px solid var(--drbColor);
+            
+        }
+    }
+   
+    .paramtext {
+        span& {
+            font-weight: 600;
+        /* all: unset !important; */
+
+        }
+        .fer& {
+            width: 2rem;
+        }
+        .hgb& {
+            width: 2rem;
+        }
+        .ferDate& {
+            width: 5rem;
+            width: calc(10 * 0.5rem);
+        }
+        .hgbDate& {
+            width: 5rem;
+        }
+        .kg& {
+            width: 2.5rem;
+        }
+        &.drbPk, &.ertPk {
+            width: 1.5rem;
+        }
+    }
 }
 
-main {
-    /* background-color: #f3f3f3; */
-    width: min(100%, 1200px);
-    padding: 5vmin;
-    row-gap: 2dvh;
+
+
+/* ----- ---------- ----------* colors *---------- ---------- ----- */
+.hgb, .hgbDate {
+    color: hsl(345, 100%, 50%);
+    accent-color: hsl(345, 100%, 50%);
 }
-html {
-    background-color: #f1f1f1;
+.kg {
+    color: hsl(210, 100%, 50%);
+    accent-color: hsl(210, 100%, 50%);
 }
-.inpLab {
-    --isStartDoseClr: hsl(214, 100%, 40%);
-    --kgClr: hsl(270, 100%, 40%);
-    --eritDoseClr: hsl(30, 100%, 40%);
-    --darbeDoseClr: hsl(10, 100%, 40%);
-    background-color: #fff;
-    width: min(100%, 480px);
-    height: 14dvh;
-    justify-content: space-evenly;
-    transition: 200ms;
-    border-radius: 1rem;
-    box-shadow: currentColor 0 0 4px 0px;
-    &:focus-within {
-        box-shadow: currentColor 0 0 8px 1px;
-    }
-    & input {
-        font-size: 1.25rem;
-        border-radius: 0.5rem;
-        color: inherit;
-        &[type="range"] {
-            width: 70%;
-            filter: brightness(1.5);
-        }
-        &[type="number"] {
-            width: max(40%, 4rem);
-            box-shadow: currentColor 0 0 3px 1px inset;
-            padding: 0.2rem 0;
-        }
-    }
-    &.isStartDose {
-        & span {
-            color: rgb(150, 150, 150);
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            &.selected {
-                color: var(--isStartDoseClr);
-                font-weight: 600;
-            }
-        }
-        color:var(--isStartDoseClr);
-        accent-color: var(--isStartDoseClr);
-    }
-    &.kg {
-        color: var(--kgClr);
-        accent-color: var(--kgClr);
-    }
-    &.eritDose {
-        color: var(--eritDoseClr);
-        accent-color: var(--eritDoseClr);
-    }
-    &.darbeDose {
-        color: var(--darbeDoseClr);
-        accent-color: var(--darbeDoseClr);
-    }
-    & label {
-        font-size: 1.1rem;
-        text-decoration: underline;
-        width: 25%;
-        letter-spacing: 0.02rem;
-    }
+.ert, .ertPk {
+    color: hsl(265, 100%, 50%);
+    accent-color: hsl(265, 100%, 50%);
 }
-&.heightZero {
-    height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+.drb, .drbPk {
+    color: hsl(280, 100%, 50%);
+    accent-color: hsl(280, 100%, 50%);
 }
-.horizontalLine {
-    border-radius: 5rem;
-    height: 0.45rem;
-    width: 80%;
-    background-color: #e2e2e2;
+.fer, .ferDate {
+    color: hsl(315, 100%, 35%);
+    accent-color: hsl(315, 100%, 35%);
 }
-.pop {
-    & .info {
-        position: absolute;
-        top: 10%;
-        right: 2%;
-        background-color: #fafafa;
-        padding: 2%;
-    }
-}
-/*#region ---------- ----------* MEDIA *---------- ---------- ----- */
-@media screen and (width > 480px) {
-    html {
-        font-size: 15px;
-    }
-}
+
+/*#endregion ---------------------* MAIN *--------------------------- */
+/*#region ---------------------* MEDIA *--------------------------- */
 @media screen and (width > 720px) {
-    html {
-        font-size: 16px;
+    html {}
+    main {
+        pad: 0 0rem;
     }
 }
-@media screen and (width > 960px) {
-    html {
-        font-size: 17px;
-    }
+@media screen and (width > 1000px) {
+    html {}
+    main {}
 }
 @media screen and (width > 1200px) {
     html {
-        font-size: 18px;
+        /* font-size: 18px; */
     }
+    main {}
 }
-/*#endregion ---------- ----------* MEDIA *---------- ---------- ----- */
+@media screen and (width > 1600px) {
+    html {}
+    main {}
+}
+/*#endregion ---------------------* MEDIA *--------------------------- */
+/* -------------------------------------------------------------------------- */
+/*#region ---------------------* UTILS *--------------------------- */
+.hiddenF, .labelInput label, .ertPk.box, .drbPk.box {
+    display: none !important;
+}
 .hidden {
     display: none;
 }
 .row {
     flex-direction: row;
 }
-.fat {
-    /* height: 25%; */
-    height: 16dvh;
-    & input[type=number] {
-        font-size: 1.5rem;
-        font-weight: 600;
-    }
+/*#endregion ---------------------* UTILS *--------------------------- */
+body * {
+    /* border: 1px dotted red; */
 }
