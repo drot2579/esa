@@ -4,12 +4,21 @@ html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --texColor: #111;
     --bgColor: hsl(0, 0%, 92%);
+    --rxxBgColor: hsl(0, 0%, 92%);
     --hgbColor: hsl(345, 100%, 50%);
-    --kgColor: hsl(210, 100%, 50%);
-    --ertColor: hsl(265, 100%, 50%);
+    --kgColor: hsl(30, 100%, 42%);
+    /* ert */
+    --ertColor: hsl(210, 100%, 50%);
+    --ertSliderColor: hsl(210, 100%, 65%);
+    --ertBgColor: hsl(210, 100%, 85%);
+    /* drb */
     --drbColor: hsl(280, 100%, 50%);
-    --ferColor: hsl(315, 100%, 35%);
-
+    --drbSliderColor: hsl(280, 100%, 65%);
+    --drbBgColor: hsl(280, 100%, 85%);
+    /* fer */
+    --ferColor: hsl(90, 95%, 30%);
+    --defaultSliderColor: hsl(60, 100%, 45%);
+    --rxxSliderColor: hsl(91, 100%, 45%);
     background-color: var(--bgColor);
 }
 body {
@@ -31,9 +40,7 @@ div {
 div {
     width: unset;
 }
-span {
-    display: inline-block;
-}
+
 input {
     background-color: hsl(0, 0%, 98%);
 }
@@ -45,15 +52,36 @@ main {
     position: relative;
     justify-content: flex-start;
     margin: auto;
-    /* padding: 0 0.25rem; */
 }
-.boxGroup1, .boxGroup2 {
+nav {
+    border-bottom: 1px solid #666;
+}
+.switchCont {
+    width: min(100%, 720px);
+}
+input:checked + .slider {
+    background-color: var(--defaultSliderColor);
+}
+input:checked.rxx + .slider {
+    background-color: var(--rxxSliderColor);
+}
+.boxGroup, .boxGroup {
     padding: 1rem 0rem;
     max-width: 720px;
     row-gap: 0.25rem;
+    &.rxx {
+        &::before  {
+            margin-bottom: 1rem;
+            content: "";
+            width: 90%;
+            height: 4px;
+            background-color: var(--rxxSliderColor);
+        }
+    }
+
 }
-.boxLabel {
-    text-transform: capitalize !important;
+.caps {
+    text-transform: capitalize;
 }
 .box {
     flex-flow: row wrap;
@@ -79,6 +107,7 @@ main {
         align-items: start;
         & input {
             height: 2rem;
+            width: 7rem;
         }
     }
     & .rangeWrap {
@@ -90,40 +119,34 @@ main {
     }
 }
 .dates {
-    justify-content: start;
-    width: 100%;
+    justify-content: space-evenly;
     flex-flow: row wrap;
     row-gap: 0.25rem;
+    width: 100%;
+}
+.dateBox {
+    width: unset;
+}
+.write.rxx, .boxGroup2.rxx {
+    background-color: var(--rxxBgColor);
 }
 .write {
-    width: min(98%,800px);
+    width: min(98%, 800px);
     & section {
-        /* display: flex;
-        flex-flow: row;
-        justify-content: start; */
         display: block;
-        border: 6px solid currentColor;
     }
     & p {
         /* all: unset !important; */
-        padding:2px;
-        text-align: left;   
+        padding: 1rem;
+        text-align: left;
         color: var(--texColor);
         margin: 0.5rem 0;
-        &.ert {
-            border: 6px solid var(--ertColor);
-        }
-        &.drb {
-            border: 6px solid var(--drbColor);
-            
-        }
     }
-   
-    .paramtext {
+    .ptext {
         span& {
             font-weight: 600;
-        /* all: unset !important; */
-
+            vertical-align: top;
+            /* all: unset !important; */
         }
         .fer& {
             width: 2rem;
@@ -133,7 +156,6 @@ main {
         }
         .ferDate& {
             width: 5rem;
-            width: calc(10 * 0.5rem);
         }
         .hgbDate& {
             width: 5rem;
@@ -146,31 +168,42 @@ main {
         }
     }
 }
-
-
-
 /* ----- ---------- ----------* colors *---------- ---------- ----- */
 .hgb, .hgbDate {
-    color: hsl(345, 100%, 50%);
-    accent-color: hsl(345, 100%, 50%);
+    color: var(--hgbColor);
+    accent-color: var(--hgbColor);
 }
 .kg {
-    color: hsl(210, 100%, 50%);
-    accent-color: hsl(210, 100%, 50%);
+    color: var(--kgColor);
+    accent-color: var(--kgColor);
 }
 .ert, .ertPk {
-    color: hsl(265, 100%, 50%);
-    accent-color: hsl(265, 100%, 50%);
+    color: var(--ertColor);
+    accent-color: var(--ertColor);
+    .write & {
+        background-color: var(--ertBgColor);
+    }
+}
+.ertVisible:checked + .slider {
+    background-color: var(--ertSliderColor);
 }
 .drb, .drbPk {
-    color: hsl(280, 100%, 50%);
-    accent-color: hsl(280, 100%, 50%);
+    color: var(--drbColor);
+    accent-color: var(--drbColor);
+    .write & {
+        background-color: var(--drbBgColor);
+    }
+}
+.drbVisible:checked + .slider {
+    background-color: var(--drbSliderColor);
 }
 .fer, .ferDate {
-    color: hsl(315, 100%, 35%);
-    accent-color: hsl(315, 100%, 35%);
+    color: var(--ferColor);
+    accent-color: var(--ferColor);
 }
-
+.rxx {
+    /* background-color: hsla(120, 100%, 50%, 10%) !important; */
+}
 /*#endregion ---------------------* MAIN *--------------------------- */
 /*#region ---------------------* MEDIA *--------------------------- */
 @media screen and (width > 720px) {
@@ -207,5 +240,5 @@ main {
 }
 /*#endregion ---------------------* UTILS *--------------------------- */
 body * {
-    /* border: 1px dotted red; */
+    border: 1px dotted red;
 }

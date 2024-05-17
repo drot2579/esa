@@ -1,6 +1,7 @@
 console.time("a")
-const toggleHidden = (els) => { for (const el of els) {el.classList.toggle("hidden")}
- }
+const toggleHidden = (els, act = 0) => {
+    for (const el of els) { el.classList[act < 0 ? "remove" : act > 0 ? "add" : "toggle"]("hidden") }
+}
 const playBlur = (els) => {
     els.forEach((el) => {
         el.animate([
@@ -23,10 +24,10 @@ class Param {
         this.name = name;
 
         this.inputs = Array.from(document.querySelectorAll(`input.${name}`))
-        this.outputs = Array.from(document.querySelectorAll(`input:not([type=date]).${name}, .paramtext.${name}`))
+        this.outputs = Array.from(document.querySelectorAll(`input:not([type=date]).${name}, .ptext.${name}`))
 
         for (const input of this.inputs) {
-            input.addEventListener("input",(e) => this.setValue(e.target.value))
+            input.addEventListener("input", (e) => this.setValue(e.target.value))
             for (const attr in attributes) { input.setAttribute(attr, attributes[attr]) }
         }
         this.setValue(value)
@@ -35,12 +36,11 @@ class Param {
     setValue(x) {
         if (this.value == x) { return }
         if (this.name.toLowerCase().includes("date")) { x = x.split("-").reverse().join(".") }
-        this.value = x = Number.isNaN(x - 0) ? x : (x - 0);
+        this.value = x = Number.isNaN(x - 0) ? x : (x - 0)
         if (typeof x == "number") { x = limitDecimals(x) }
-        for (const el of this.outputs) {  el.value = el.innerText = x; playBlur([el]) }
+        for (const el of this.outputs) { el.value = el.innerText = x; playBlur([el]) }
         this.callPostFns()
     }
-
 }
 
 
@@ -50,7 +50,7 @@ let ert = new Param("ert", 7500, { min: 0, max: 150 * 150, step: 75 })
 let ertPk = new Param("ertPk", 150, { min: 0, max: 150, step: 75 })
 let drb = new Param("drb", 37.5, { min: 0, max: 0.75 * 150, step: 0.35 })
 let drbPk = new Param("drbPk", 0.75, { min: 0, max: 0.75, step: 0.05 })
-let fer = new Param("fer", 300, { min: 0, max: 1500, step: 1 })
+let fer = new Param("fer", 300, { min: 201, max: 1500, step: 1 })
 
 let day = 1000 * 60 * 60 * 24
 let date = new Date()
@@ -59,8 +59,7 @@ let sixMonthsAgo = new Date(date - 180 * day).toISOString().slice(0, 10)
 
 let hgbDate = new Param("hgbDate", currentDate, { min: sixMonthsAgo, max: currentDate })
 let ferDate = new Param("ferDate", currentDate, { min: sixMonthsAgo, max: currentDate })
-delete hgbDate.outputs.date
-delete ferDate.outputs.date
+
 
 const updateDoses = () => {
     ert.setValue(ertPk.value * kg.value)
@@ -78,9 +77,25 @@ drb.postFns.push(() => kg.setValue(drb.value / drbPk.value))
 console.timeEnd("a")
 
 
-const chc = document.querySelector("input[type=checkbox]")
+const rxxSwc = document.querySelector("input[type=checkbox].rxx")
 toggleHidden(document.querySelectorAll(".rxx"))
-
-chc.addEventListener("change", (e) => {
+rxxSwc.addEventListener("change", (e) => {
     toggleHidden(document.querySelectorAll(".rxx"))
 })
+
+
+
+
+const ertSwitchEl = document.querySelector("input[type=checkbox].ertVisible")
+const drbSwitchEl = document.querySelector("input[type=checkbox].drbVisible")
+const ertdrbFn = (e) => {
+    if (!ertSwitchEl.checked && !drbSwitchEl.checked) {
+        if (e.target == ertSwitchEl) { drbSwitchEl.checked = true }
+        if (e.target == drbSwitchEl) { ertSwitchEl.checked = true }
+    }
+    toggleHidden(document.querySelectorAll(".ert"), ertSwitchEl.checked ? -1 : +1)
+    toggleHidden(document.querySelectorAll(".drb"), drbSwitchEl.checked ? -1 : +1)
+
+}
+ertSwitchEl.addEventListener("change", ertdrbFn)
+drbSwitchEl.addEventListener("change", ertdrbFn)

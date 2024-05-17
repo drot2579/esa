@@ -14,22 +14,41 @@
 <!--endregion -->
 <body>
     <nav>
-        <div class="rxxInputWrap row">
+        <div class="switchCont row">
 
-            <span>Reçete</span>
-            <label class="switch">
-                <input class="rxxInput" type="checkbox">
-                <span class="slider round"></span>
-            </label>
+            <switchWrap>
+                
+                <span class="caps">eritropoetin</span>
+                <label class="switch">
+                    <input class="ertVisible" type="checkbox" checked = "true">
+                    <span class="slider round"></span>
+                </label>
+            </switchWrap>
+            <switchWrap>
+                
+                <span class="caps">darbepoetin</span>
+                <label class="switch">
+                    <input class="drbVisible" type="checkbox" checked = "true">
+                    <span class="slider round"></span>
+                </label>
+            </switchWrap>
+            <switchWrap>
+                
+                <span class="caps">reçete</span>
+                <label class="switch">
+                    <input class="rxx" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </switchWrap>
 
         </div>
     </nav>
     <main>
-        <article class="boxes">
-            <section class="boxGroup1">
+        <article class="boxGroupes">
+            <section class="boxGroup">
                 <div class="hgb box">
                     <div class="titleWrap">
-                        <p class="boxLabel">hgb</p>
+                        <p class="caps">hgb</p>
                     </div>
                     <div class="numberWrap labelInput ">
                         <label for="hgbInpNum">hgbInpNum</label>
@@ -42,7 +61,7 @@
                 </div>
                 <div class="kg box">
                     <div class="titleWrap">
-                        <p class="boxLabel">kg</p>
+                        <p class="caps">kg</p>
                     </div>
                     <div class="numberWrap labelInput ">
                         <label for="kgInpNum">kgInpNum</label>
@@ -55,7 +74,7 @@
                 </div>
                 <div class="ert box">
                     <div class="titleWrap">
-                        <p class="boxLabel">eritropoetin</p>
+                        <p class="caps">eritropoetin</p>
                     </div>
                     <div class="numberWrap labelInput ">
                         <label for="ertInpNum">ertInpNum</label>
@@ -68,7 +87,7 @@
                 </div>
                 <div class="drb box">
                     <div class="titleWrap">
-                        <p class="boxLabel">darbepoetin</p>
+                        <p class="caps">darbepoetin</p>
                     </div>
                     <div class="numberWrap labelInput ">
                         <label for="drbInpNum">drbInpNum</label>
@@ -81,7 +100,7 @@
                 </div>
                 <div class="ertPk box">
                     <div class="titleWrap">
-                        <p class="boxLabel">eritropoetin/kg</p>
+                        <p class="caps">eritropoetin/kg</p>
                     </div>
                     <div class="numberWrap labelInput ">
                         <label for="ertPkInpNum">ertPkInpNum</label>
@@ -94,7 +113,7 @@
                 </div>
                 <div class="drbPk box">
                     <div class="titleWrap">
-                        <p class="boxLabel">darbepoetin/kg</p>
+                        <p class="caps">darbepoetin/kg</p>
                     </div>
                     <div class="numberWrap labelInput ">
                         <label for="drbPkInpNum">drbPkInpNum</label>
@@ -106,10 +125,10 @@
                     </div>
                 </div>
             </section>
-            <section class="boxGroup2 rxx">
+            <section class="boxGroup rxx">
                 <div class="fer box">
                     <div class="titleWrap">
-                        <p class="boxLabel">ferritin</p>
+                        <p class="caps">ferritin</p>
                     </div>
                     <div class="numberWrap labelInput ">
                         <label for="ferInpNum">ferInpNum</label>
@@ -123,7 +142,7 @@
                 <div class="dates row">
                     <div class="ferDate box dateBox">
                         <div class="titleWrap">
-                            <p class="boxLabel">ferritin tarih</p>
+                            <p class="caps">ferritin tarih</p>
                         </div>
                         <div class="dateWrap labelInput ">
                             <label for="ferDateInpDate">ferDateInpDate</label>
@@ -132,7 +151,7 @@
                     </div>
                     <div class="hgbDate box dateBox">
                         <div class="titleWrap">
-                            <p class="boxLabel">hgb tarih</p>
+                            <p class="caps">hgb tarih</p>
                         </div>
                         <div class="dateWrap labelInput ">
                             <label for="hgbDateInpDate">hgbDateInpDate</label>
@@ -145,28 +164,28 @@
         <article class="write rxx">
             <p class="ert bordered">
                     Ferritin:
-                    <span class="fer paramtext"></span>
-                    &lpar;<span class="ferDate paramtext"></span>&rpar;.
+                    <span class="fer ptext"></span>
+                    &lpar;<span class="ferDate ptext"></span>&rpar;.
                     Hgb:
-                    <span class="hgb paramtext"></span>
-                    &lpar;<span class="hgbDate paramtext"></span>&rpar;.
+                    <span class="hgb ptext"></span>
+                    &lpar;<span class="hgbDate ptext"></span>&rpar;.
                     Hastanın kuru kilosu
-                    <span class="kg paramtext"></span>
+                    <span class="kg ptext"></span>
                     kg olup
-                    <span class="ertPk paramtext"></span>
+                    <span class="ertPk ptext"></span>
                     mcg/kg/hafta dozundan tedavisi uygundur.
                 </p>
             <p class="drb bordered">
                     Ferritin:
-                    <span class="fer paramtext"></span>
-                    &lpar;<span class="ferDate paramtext"></span>&rpar;.
+                    <span class="fer ptext"></span>
+                    &lpar;<span class="ferDate ptext"></span>&rpar;.
                     Hgb:
-                    <span class="hgb paramtext"></span>
-                    &lpar;<span class="hgbDate paramtext"></span>&rpar;.
+                    <span class="hgb ptext"></span>
+                    &lpar;<span class="hgbDate ptext"></span>&rpar;.
                     Hastanın kuru kilosu
-                    <span class="kg paramtext"></span>
+                    <span class="kg ptext"></span>
                     kg olup
-                    <span class="drbPk paramtext"></span>
+                    <span class="drbPk ptext"></span>
                     IU/kg/hafta dozundan tedavisi uygundur.
                 </p>
         </article>

@@ -1,4 +1,50 @@
 
+// toggleHidden(document.querySelectorAll(".ert"))
+// toggleHidden(document.querySelectorAll(".drb"))
+
+/* const ertdrbFn = (e) => {
+
+    if (!ertSwc.checked && !drbSwc.checked) { 
+        if(e.target == ertSwc) { drbSwc.checked = true}
+        if(e.target == drbSwc) { ertSwc.checked = true}
+     }
+    toggleHidden(document.querySelectorAll(".ert"), ertSwc.checked ? -1 : +1)
+    toggleHidden(document.querySelectorAll(".drb"), drbSwc.checked ? -1 : +1)
+
+}
+const ertSwc = document.querySelector("input[type=checkbox].ert")
+const drbSwc = document.querySelector("input[type=checkbox].drb")
+ertSwc.addEventListener("change", ertdrbFn)
+drbSwc.addEventListener("change", ertdrbFn)
+class RadioSwitch {
+    constructor(switchName1,switchName2) {
+    this.switchNames = [switchName1, switchName2]
+        for (const name of this.switchNames) {
+            let el = document.querySelector(`input[type=checkbox].${name}`)
+            this[name] = {}
+        }
+    
+    this.els = names.map(nm => document.querySelector(`input[type=checkbox].${nm}`) )
+    [this.swich1, this.swich2] = 
+    }
+}
+
+let drbVisible = new Param("drbVisible",true)
+let ertVisible = new Param("ertVisible",true)
+drbVisible.setValue = function (){
+    drbVisible.value =  drbVisible.inputs[0].checked
+    console.log(drbVisible.value);
+}
+ertVisible.setValue = function (){
+    ertVisible.value =  ertVisible.inputs[0].checked
+    console.log(ertVisible.value);
+}
+ */
+
+
+
+
+
 const limitDecimals2 = (num, dcm = 1) => +([(num + "").split(".")[0], (num + "")?.split(".")[1]?.slice(0, dcm)].join("."))
 const limitDecimals3 = (num, dcm = 1) => +(num + "").split(".").reduce((a, c) => a + "." + c.slice(0, dcm))
 
