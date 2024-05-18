@@ -4,7 +4,8 @@ html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --texColor: #111;
     --bgColor: hsl(0, 0%, 92%);
-    --rxxBgColor: hsl(0, 0%, 92%);
+    --inputBgColor: hsl(0, 0%, 98%);
+    /* --- */
     --hgbColor: hsl(345, 100%, 50%);
     --kgColor: hsl(30, 100%, 42%);
     /* ert */
@@ -17,8 +18,11 @@ html {
     --drbBgColor: hsl(280, 100%, 85%);
     /* fer */
     --ferColor: hsl(90, 95%, 30%);
+    /* --- */
     --defaultSliderColor: hsl(60, 100%, 45%);
+    --rxxBgColor: hsl(0, 0%, 92%);
     --rxxSliderColor: hsl(91, 100%, 45%);
+    --popBgColor: rgba(0, 128, 0, 0.7);
     background-color: var(--bgColor);
 }
 body {
@@ -41,9 +45,8 @@ div {
     width: unset;
 }
 input {
-    background-color: hsl(0, 0%, 98%);
+    background-color:var(--inputBgColor);
 }
-/* *For Development */
 /*#endregion ---------------------* MY CONFIG *--------------------------- */
 /*#region ---------------------* MAIN *--------------------------- */
 main {
@@ -144,7 +147,7 @@ input:checked.rxx + .slider {
         display: block;
     }
     & p {
-        /* all: unset !important; */
+        cursor: pointer;
         padding: 1rem;
         text-align: left;
         vertical-align: center;
@@ -212,17 +215,15 @@ input:checked.rxx + .slider {
     accent-color: var(--ferColor);
 }
 .pop {
-    color: #fafafa;
-    background-color: green;
+    color: var(--inputBgColor);
+    background-color: var(--popBgColor);
     padding: 0.5rem 2rem;
     border-radius: 2rem;
     position: fixed;
     transition: 300ms;
     bottom:3rem;
-    &.passive {
+    &.nopop {
         bottom: -4rem;
-        /* translate: Y 100%; */
-        /* display: none; */
     }
 }
 /*#endregion ---------------------* MAIN *--------------------------- */
@@ -230,7 +231,6 @@ input:checked.rxx + .slider {
 @media screen and (width > 720px) {
     html {}
     main {
-        pad: 0 0rem;
     }
 }
 @media screen and (width > 1000px) {
@@ -239,7 +239,6 @@ input:checked.rxx + .slider {
 }
 @media screen and (width > 1200px) {
     html {
-        /* font-size: 18px; */
     }
     main {}
 }
