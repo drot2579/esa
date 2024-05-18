@@ -40,7 +40,6 @@ div {
 div {
     width: unset;
 }
-
 input {
     background-color: hsl(0, 0%, 98%);
 }
@@ -50,11 +49,21 @@ input {
 main {
     max-width: 1000px;
     position: relative;
-    justify-content: flex-start;
     margin: auto;
 }
 nav {
     border-bottom: 1px solid #666;
+    height: 4rem;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.home {
+    height: 100%;
+}
+.logo {
+    max-height: 100%;
+    border-right: 1px solid;
 }
 .switchCont {
     width: min(100%, 720px);
@@ -70,7 +79,7 @@ input:checked.rxx + .slider {
     max-width: 720px;
     row-gap: 0.25rem;
     &.rxx {
-        &::before  {
+        &::before {
             margin-bottom: 1rem;
             content: "";
             width: 90%;
@@ -78,7 +87,6 @@ input:checked.rxx + .slider {
             background-color: var(--rxxSliderColor);
         }
     }
-
 }
 .caps {
     text-transform: capitalize;
@@ -139,34 +147,36 @@ input:checked.rxx + .slider {
         /* all: unset !important; */
         padding: 1rem;
         text-align: left;
+        vertical-align: center;
         color: var(--texColor);
         margin: 0.5rem 0;
-    }
-    .ptext {
-        span& {
-            font-weight: 600;
+        & span {
             vertical-align: top;
-            /* all: unset !important; */
-        }
-        .fer& {
-            width: 2rem;
-        }
-        .hgb& {
-            width: 2rem;
-        }
-        .ferDate& {
-            width: 5rem;
-        }
-        .hgbDate& {
-            width: 5rem;
-        }
-        .kg& {
-            width: 2.5rem;
-        }
-        &.drbPk, &.ertPk {
-            width: 1.5rem;
+            display: inline-block;
+            &.ptext {
+                font-weight: 600;
+            }
+            &.fer {
+                width: 2rem;
+            }
+            &.hgb {
+                width: 2rem;
+            }
+            &.ferDate {
+                width: 5rem;
+            }
+            &.hgbDate {
+                width: 5rem;
+            }
+            &.kg {
+                width: 2.5rem;
+            }
+            &.drbPk, &.ertPk {
+                width: 1.5rem;
+            }
         }
     }
+
 }
 /* ----- ---------- ----------* colors *---------- ---------- ----- */
 .hgb, .hgbDate {
@@ -201,8 +211,19 @@ input:checked.rxx + .slider {
     color: var(--ferColor);
     accent-color: var(--ferColor);
 }
-.rxx {
-    /* background-color: hsla(120, 100%, 50%, 10%) !important; */
+.pop {
+    color: #fafafa;
+    background-color: green;
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    position: fixed;
+    transition: 300ms;
+    bottom:3rem;
+    &.passive {
+        bottom: -4rem;
+        /* translate: Y 100%; */
+        /* display: none; */
+    }
 }
 /*#endregion ---------------------* MAIN *--------------------------- */
 /*#region ---------------------* MEDIA *--------------------------- */
@@ -240,5 +261,5 @@ input:checked.rxx + .slider {
 }
 /*#endregion ---------------------* UTILS *--------------------------- */
 body * {
-    border: 1px dotted red;
+    /* border: 1px dotted red; */
 }

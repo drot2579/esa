@@ -55,10 +55,11 @@ let fer = new Param("fer", 300, { min: 201, max: 1500, step: 1 })
 let day = 1000 * 60 * 60 * 24
 let date = new Date()
 let currentDate = date.toISOString().slice(0, 10)
+let firstDayOfMonth = date.toISOString().slice(0, 8) + "01"
 let sixMonthsAgo = new Date(date - 180 * day).toISOString().slice(0, 10)
 
-let hgbDate = new Param("hgbDate", currentDate, { min: sixMonthsAgo, max: currentDate })
-let ferDate = new Param("ferDate", currentDate, { min: sixMonthsAgo, max: currentDate })
+let hgbDate = new Param("hgbDate", firstDayOfMonth, { min: sixMonthsAgo, max: currentDate })
+let ferDate = new Param("ferDate", firstDayOfMonth, { min: sixMonthsAgo, max: currentDate })
 
 
 const updateDoses = () => {
@@ -97,5 +98,23 @@ const ertdrbFn = (e) => {
     toggleHidden(document.querySelectorAll(".drb"), drbSwitchEl.checked ? -1 : +1)
 
 }
-ertSwitchEl.addEventListener("change", ertdrbFn)
-drbSwitchEl.addEventListener("change", ertdrbFn)
+ertSwitchEl.addEventListener("change", ertdrbFn);
+drbSwitchEl.addEventListener("change", ertdrbFn);
+let popTimeout = null;
+
+
+let pop = document.querySelector(".pop") 
+ const popHandler = () => {
+pop.classList.remove("passive")
+popTimeout =  setTimeout(() => pop.classList.add("passive"), 1000 )
+ }
+
+for (const el of document.querySelectorAll(".sentence")) {
+    el.addEventListener("dblclick", (e) => {
+        let text = el.textContent.trim()
+        text =  text.replace(/[\ ,\n]+/g, " ")
+        console.log(text);
+        navigator.clipboard.writeText(text)
+        popHandler()
+    },{capture:true})
+}
